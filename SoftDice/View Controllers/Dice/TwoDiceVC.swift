@@ -15,6 +15,8 @@ class TwoDiceVC: UIViewController {
     
     let diceImageView1 = UIImageView()
     let diceImageView2 = UIImageView()
+    
+    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,8 @@ class TwoDiceVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(showHistory))
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleDeviceOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
+        
+        impactFeedbackGenerator.prepare()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,6 +116,7 @@ class TwoDiceVC: UIViewController {
             animateImageView(imageView: diceImageView1, toImage: setDiceImage(result: result1))
             animateImageView(imageView: diceImageView2, toImage: setDiceImage(result: result2))
         }
+        impactFeedbackGenerator.impactOccurred()
     }
 
     func animateImageView(imageView: UIImageView, toImage: UIImage?) {

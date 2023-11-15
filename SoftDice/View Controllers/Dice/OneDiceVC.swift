@@ -11,6 +11,8 @@ class OneDiceVC: UIViewController {
     
     var rollHistory = RollHistory.shared
     let diceImageView = UIImageView()
+    
+    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,8 @@ class OneDiceVC: UIViewController {
         configureDiceImageView()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(showHistory))
+        
+        impactFeedbackGenerator.prepare()
     }
 
     func configureDiceImageView() {
@@ -83,6 +87,7 @@ class OneDiceVC: UIViewController {
                 }
             }
         }
+        impactFeedbackGenerator.impactOccurred()
     }
     
     @objc func showHistory() {
