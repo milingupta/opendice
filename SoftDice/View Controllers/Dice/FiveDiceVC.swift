@@ -22,6 +22,8 @@ class FiveDiceVC: UIViewController {
     let diceImageView5 = UIImageView()
     
     var diceImageViews: [UIImageView] = []
+    
+    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,8 @@ class FiveDiceVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(showHistory))
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleDeviceOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
+        
+        impactFeedbackGenerator.prepare()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -132,6 +136,7 @@ class FiveDiceVC: UIViewController {
                 animateImageView(imageView: diceImageViews[i], toImage: setDiceImage(result: results[i]))
             }
         }
+        impactFeedbackGenerator.impactOccurred()
     }
     
     func animateImageView(imageView: UIImageView, toImage: UIImage?) {
