@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Drops
 
 class FourHistoryVC: UITableViewController {
 
@@ -14,6 +15,9 @@ class FourHistoryVC: UITableViewController {
     private let placeholderView = UIView()
     private let placeholderLabel = UILabel()
     private let placeholderImageView = UIImageView()
+    
+    private let ascendingDrop = Drop(title: "Ascending Order", icon: UIImage(systemName: "arrow.up.circle.fill"), position: .top, duration: 0.75)
+    private let descendingDrop = Drop(title: "Descending Order", icon: UIImage(systemName: "arrow.down.circle.fill"), position: .top, duration: 0.75)
     
     private lazy var sortButton: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down"), style: .plain, target: self, action: #selector(sortTapped))
@@ -51,6 +55,7 @@ class FourHistoryVC: UITableViewController {
     
     @objc func sortTapped() {
         rollHistory.reverseFourRollHistory()
+        showSortOrderDrop()
         UIView.transition(with: tableView, duration: 0.35, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() })
     }
 
@@ -63,7 +68,7 @@ class FourHistoryVC: UITableViewController {
         placeholderLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         placeholderLabel.textColor = .placeholderText
         
-        let imageSize: CGFloat = 80
+        let imageSize: CGFloat = 100
         
         placeholderImageView.image = UIImage(systemName: "dice.fill")
         placeholderImageView.tintColor = .placeholderText
@@ -74,8 +79,8 @@ class FourHistoryVC: UITableViewController {
         
         view.addSubview(placeholderView)
         
-        // Calculate a shift value that visually centers the placeholder
-        let shiftUpwards: CGFloat = 100 // Adjust this value as needed
+        // Shift value that visually centers the placeholder
+        let shiftUpwards: CGFloat = 100
         
         NSLayoutConstraint.activate([
             placeholderView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -100,6 +105,10 @@ class FourHistoryVC: UITableViewController {
 
         // Enable or disable scrolling based on the presence of rolls
         tableView.isScrollEnabled = rollCount > 0
+    }
+    
+    private func showSortOrderDrop() {
+        Drops.show(rollHistory.isOldestFourFirst ? ascendingDrop : descendingDrop)
     }
 
 }
