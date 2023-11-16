@@ -27,6 +27,7 @@
 		9790E1A92ADDD75900CECEAA /* ThreeHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790E1972ADDD75900CECEAA /* ThreeHistoryCell.swift */; };
 		9790E1AA2ADDD75900CECEAA /* FiveHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790E1982ADDD75900CECEAA /* FiveHistoryCell.swift */; };
 		9790E1AB2ADDD75900CECEAA /* TwoHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790E1992ADDD75900CECEAA /* TwoHistoryCell.swift */; };
+		97C1E04B2B05E27500E9EE7B /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 97C1E04A2B05E27500E9EE7B /* Drops */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97C1E04B2B05E27500E9EE7B /* Drops in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +183,9 @@
 			dependencies = (
 			);
 			name = SoftDice;
+			packageProductDependencies = (
+				97C1E04A2B05E27500E9EE7B /* Drops */,
+			);
 			productName = SoftDice;
 			productReference = 9790E16A2ADDD64800CECEAA /* SoftDice.app */;
 			productType = "com.apple.product-type.application";
@@ -209,6 +214,9 @@
 				Base,
 			);
 			mainGroup = 9790E1612ADDD64800CECEAA;
+			packageReferences = (
+				97C1E0492B05E27500E9EE7B /* XCRemoteSwiftPackageReference "Drops" */,
+			);
 			productRefGroup = 9790E16B2ADDD64800CECEAA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -465,6 +473,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97C1E0492B05E27500E9EE7B /* XCRemoteSwiftPackageReference "Drops" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/omaralbeik/Drops.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97C1E04A2B05E27500E9EE7B /* Drops */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97C1E0492B05E27500E9EE7B /* XCRemoteSwiftPackageReference "Drops" */;
+			productName = Drops;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9790E1622ADDD64800CECEAA /* Project object */;
 }
