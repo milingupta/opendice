@@ -23,33 +23,28 @@ class ThreeHistoryCell: UITableViewCell, HistoryCellProtocol {
     }
 
     func setupImageViews() {
-        // add the image views to the cell's content view
         contentView.addSubview(diceImageView1)
         contentView.addSubview(diceImageView2)
         contentView.addSubview(diceImageView3)
 
-        // turn off autoresizing masks
         diceImageView1.translatesAutoresizingMaskIntoConstraints = false
         diceImageView2.translatesAutoresizingMaskIntoConstraints = false
         diceImageView3.translatesAutoresizingMaskIntoConstraints = false
+        
+        let imageViews = [diceImageView1, diceImageView2, diceImageView3]
+        imageViews.forEach { imageView in
+            NSLayoutConstraint.activate([
+                imageView.widthAnchor.constraint(equalToConstant: 50),
+                imageView.heightAnchor.constraint(equalToConstant: 50),
+                imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            ])
+        }
 
-        // constrain the image views
         NSLayoutConstraint.activate([
-            diceImageView1.widthAnchor.constraint(equalToConstant: 50),
-            diceImageView1.heightAnchor.constraint(equalToConstant: 50),
-            diceImageView1.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            diceImageView1.trailingAnchor.constraint(equalTo: diceImageView2.leadingAnchor, constant: -10),
-
-            diceImageView2.widthAnchor.constraint(equalToConstant: 50),
-            diceImageView2.heightAnchor.constraint(equalToConstant: 50),
-            diceImageView2.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            diceImageView2.trailingAnchor.constraint(equalTo: diceImageView3.leadingAnchor, constant: -10),
-            
-            diceImageView3.widthAnchor.constraint(equalToConstant: 50),
-            diceImageView3.heightAnchor.constraint(equalToConstant: 50),
-            diceImageView3.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            diceImageView3.leadingAnchor.constraint(equalTo: diceImageView2.trailingAnchor, constant: 10),
-            diceImageView3.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+            diceImageView1.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            diceImageView2.trailingAnchor.constraint(equalTo: diceImageView1.leadingAnchor, constant: -10),
+            diceImageView3.trailingAnchor.constraint(equalTo: diceImageView2.leadingAnchor, constant: -10)
         ])
     }
+    
 }
