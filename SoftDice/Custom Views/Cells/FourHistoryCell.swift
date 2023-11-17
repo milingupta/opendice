@@ -42,4 +42,5 @@ class FourHistoryCell: UITableViewCell, HistoryCellProtocol {
             $0.heightAnchor.constraint(equalToConstant: 50)
         ]})
     }
+    
 }
