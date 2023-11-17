@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RollHistory {
+class RollHistory: NSObject {
     
     static let shared = RollHistory()
     var isOldestOneFirst = true
@@ -22,7 +22,7 @@ class RollHistory {
     private(set) var fourRollHistory: [(rollNumber: Int, rollValue: (Int, Int, Int, Int))] = []
     private(set) var fiveRollHistory: [(rollNumber: Int, rollValue: (Int, Int, Int, Int, Int))] = []
 
-    private init() {}
+    private override init() {}
     
     func clearHistory() {
         oneRollHistory.removeAll()

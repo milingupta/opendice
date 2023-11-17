@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThreeHistoryCell: UITableViewCell {
+class ThreeHistoryCell: UITableViewCell, HistoryCellProtocol {
 
     let diceImageView1 = UIImageView()
     let diceImageView2 = UIImageView()
@@ -22,7 +22,7 @@ class ThreeHistoryCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupImageViews() {
+    func setupImageViews() {
         // add the image views to the cell's content view
         contentView.addSubview(diceImageView1)
         contentView.addSubview(diceImageView2)
