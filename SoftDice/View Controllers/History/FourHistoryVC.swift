@@ -61,7 +61,7 @@ class FourHistoryVC: UITableViewController, HistoryVCProtocol {
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
         placeholderImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        placeholderLabel.text = "No rolls"
+        placeholderLabel.text = "No Rolls"
         placeholderLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         placeholderLabel.textColor = .placeholderText
         
