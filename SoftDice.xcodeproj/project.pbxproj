@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		970420C32B071643000154C6 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 970420C22B071643000154C6 /* Toast */; };
 		9790E1772ADDD64900CECEAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9790E1762ADDD64900CECEAA /* Assets.xcassets */; };
 		9790E17A2ADDD64900CECEAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9790E1782ADDD64900CECEAA /* LaunchScreen.storyboard */; };
 		9790E19A2ADDD75900CECEAA /* RollHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790E1822ADDD75900CECEAA /* RollHistory.swift */; };
@@ -27,7 +28,9 @@
 		9790E1A92ADDD75900CECEAA /* ThreeHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790E1972ADDD75900CECEAA /* ThreeHistoryCell.swift */; };
 		9790E1AA2ADDD75900CECEAA /* FiveHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790E1982ADDD75900CECEAA /* FiveHistoryCell.swift */; };
 		9790E1AB2ADDD75900CECEAA /* TwoHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790E1992ADDD75900CECEAA /* TwoHistoryCell.swift */; };
-		97C1E04B2B05E27500E9EE7B /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 97C1E04A2B05E27500E9EE7B /* Drops */; };
+		97C1E04E2B067E0300E9EE7B /* DiceVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C1E04D2B067E0300E9EE7B /* DiceVCProtocol.swift */; };
+		97C1E0522B067E9900E9EE7B /* HistoryCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C1E0512B067E9900E9EE7B /* HistoryCellProtocol.swift */; };
+		97C1E05A2B070AD600E9EE7B /* HistoryVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C1E0592B070AD600E9EE7B /* HistoryVCProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,9 @@
 		9790E1972ADDD75900CECEAA /* ThreeHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeHistoryCell.swift; sourceTree = "<group>"; };
 		9790E1982ADDD75900CECEAA /* FiveHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveHistoryCell.swift; sourceTree = "<group>"; };
 		9790E1992ADDD75900CECEAA /* TwoHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoHistoryCell.swift; sourceTree = "<group>"; };
+		97C1E04D2B067E0300E9EE7B /* DiceVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceVCProtocol.swift; sourceTree = "<group>"; };
+		97C1E0512B067E9900E9EE7B /* HistoryCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellProtocol.swift; sourceTree = "<group>"; };
+		97C1E0592B070AD600E9EE7B /* HistoryVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVCProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97C1E04B2B05E27500E9EE7B /* Drops in Frameworks */,
+				970420C32B071643000154C6 /* Toast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +95,7 @@
 				9790E1832ADDD75900CECEAA /* Support */,
 				9790E1862ADDD75900CECEAA /* View Controllers */,
 				9790E1932ADDD75900CECEAA /* Custom Views */,
+				97C1E04C2B067CDF00E9EE7B /* Protocols */,
 				9790E1812ADDD75900CECEAA /* Data */,
 				9790E1762ADDD64900CECEAA /* Assets.xcassets */,
 				9790E1782ADDD64900CECEAA /* LaunchScreen.storyboard */,
@@ -167,6 +174,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		97C1E04C2B067CDF00E9EE7B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				97C1E04D2B067E0300E9EE7B /* DiceVCProtocol.swift */,
+				97C1E0512B067E9900E9EE7B /* HistoryCellProtocol.swift */,
+				97C1E0592B070AD600E9EE7B /* HistoryVCProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -184,7 +201,7 @@
 			);
 			name = SoftDice;
 			packageProductDependencies = (
-				97C1E04A2B05E27500E9EE7B /* Drops */,
+				970420C22B071643000154C6 /* Toast */,
 			);
 			productName = SoftDice;
 			productReference = 9790E16A2ADDD64800CECEAA /* SoftDice.app */;
@@ -215,7 +232,7 @@
 			);
 			mainGroup = 9790E1612ADDD64800CECEAA;
 			packageReferences = (
-				97C1E0492B05E27500E9EE7B /* XCRemoteSwiftPackageReference "Drops" */,
+				970420C12B071643000154C6 /* XCRemoteSwiftPackageReference "toast-swift" */,
 			);
 			productRefGroup = 9790E16B2ADDD64800CECEAA /* Products */;
 			projectDirPath = "";
@@ -246,6 +263,7 @@
 				9790E1AA2ADDD75900CECEAA /* FiveHistoryCell.swift in Sources */,
 				9790E19B2ADDD75900CECEAA /* AppDelegate.swift in Sources */,
 				9790E19D2ADDD75900CECEAA /* FourDiceVC.swift in Sources */,
+				97C1E0522B067E9900E9EE7B /* HistoryCellProtocol.swift in Sources */,
 				9790E1A32ADDD75900CECEAA /* TwoHistoryVC.swift in Sources */,
 				9790E1A62ADDD75900CECEAA /* FourHistoryVC.swift in Sources */,
 				9790E1A82ADDD75900CECEAA /* FourHistoryCell.swift in Sources */,
@@ -256,9 +274,11 @@
 				9790E19E2ADDD75900CECEAA /* OneDiceVC.swift in Sources */,
 				9790E19A2ADDD75900CECEAA /* RollHistory.swift in Sources */,
 				9790E1A92ADDD75900CECEAA /* ThreeHistoryCell.swift in Sources */,
+				97C1E05A2B070AD600E9EE7B /* HistoryVCProtocol.swift in Sources */,
 				9790E19C2ADDD75900CECEAA /* SceneDelegate.swift in Sources */,
 				9790E1A72ADDD75900CECEAA /* OneHistoryCell.swift in Sources */,
 				9790E1A52ADDD75900CECEAA /* OneHistoryVC.swift in Sources */,
+				97C1E04E2B067E0300E9EE7B /* DiceVCProtocol.swift in Sources */,
 				9790E1A22ADDD75900CECEAA /* ThreeHistoryVC.swift in Sources */,
 				9790E1AB2ADDD75900CECEAA /* TwoHistoryCell.swift in Sources */,
 			);
@@ -402,11 +422,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HLLUK26RZG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoftDice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SoftDice;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.dice-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -429,11 +452,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HLLUK26RZG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoftDice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SoftDice;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.dice-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -475,21 +501,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		97C1E0492B05E27500E9EE7B /* XCRemoteSwiftPackageReference "Drops" */ = {
+		970420C12B071643000154C6 /* XCRemoteSwiftPackageReference "toast-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/omaralbeik/Drops.git";
+			repositoryURL = "https://github.com/BastiaanJansen/toast-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.0;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		97C1E04A2B05E27500E9EE7B /* Drops */ = {
+		970420C22B071643000154C6 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 97C1E0492B05E27500E9EE7B /* XCRemoteSwiftPackageReference "Drops" */;
-			productName = Drops;
+			package = 970420C12B071643000154C6 /* XCRemoteSwiftPackageReference "toast-swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

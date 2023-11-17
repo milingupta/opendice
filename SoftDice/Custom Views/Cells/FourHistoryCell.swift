@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FourHistoryCell: UITableViewCell {
+class FourHistoryCell: UITableViewCell, HistoryCellProtocol {
 
     let diceImageViews = (0..<4).map { _ in UIImageView() }
 
@@ -20,7 +20,7 @@ class FourHistoryCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupImageViews() {
+    func setupImageViews() {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 10

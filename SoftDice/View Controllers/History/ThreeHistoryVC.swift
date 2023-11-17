@@ -6,20 +6,17 @@
 //
 
 import UIKit
-import Drops
+import Toast
 
-class ThreeHistoryVC: UITableViewController {
+class ThreeHistoryVC: UITableViewController, HistoryVCProtocol {
 
     var rollHistory = RollHistory.shared
     
-    private let placeholderView = UIView()
-    private let placeholderLabel = UILabel()
-    private let placeholderImageView = UIImageView()
+    let placeholderView = UIView()
+    let placeholderLabel = UILabel()
+    let placeholderImageView = UIImageView()
     
-    private let ascendingDrop = Drop(title: "Ascending Order", icon: UIImage(systemName: "arrow.up.circle.fill"), position: .top, duration: 0.75)
-    private let descendingDrop = Drop(title: "Descending Order", icon: UIImage(systemName: "arrow.down.circle.fill"), position: .top, duration: 0.75)
-    
-    private lazy var sortButton: UIBarButtonItem = {
+    lazy var sortButton: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down"), style: .plain, target: self, action: #selector(sortTapped))
     }()
 
@@ -54,11 +51,11 @@ class ThreeHistoryVC: UITableViewController {
 
     @objc func sortTapped() {
         rollHistory.reverseThreeRollHistory()
-        showSortOrderDrop()
+        showSortOrderToast()
         UIView.transition(with: tableView, duration: 0.35, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() })
     }
     
-    private func configurePlaceholderView() {
+    func configurePlaceholderView() {
         placeholderView.translatesAutoresizingMaskIntoConstraints = false
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
         placeholderImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +90,7 @@ class ThreeHistoryVC: UITableViewController {
         ])
     }
     
-    private func updatePlaceholderVisibility() {
+    func updatePlaceholderVisibility() {
         let rollCount = rollHistory.threeRollHistory.count
 
         // Show placeholder view only when there are no rolls
@@ -106,8 +103,12 @@ class ThreeHistoryVC: UITableViewController {
         tableView.isScrollEnabled = rollCount > 0
     }
     
-    private func showSortOrderDrop() {
-        Drops.show(rollHistory.isOldestThreeFirst ? ascendingDrop : descendingDrop)
+    func showSortOrderToast() {
+        let ascendingToast = Toast.default(image: UIImage(systemName: "arrow.down.circle.fill")!, title: "Oldest First", config: ToastConfiguration(direction: .top, dismissBy: [.time(time: 1.0), .swipe(direction: .natural)], animationTime: 0.25))
+        let descendingToast = Toast.default(image: UIImage(systemName: "arrow.up.circle.fill")!, title: "Newest First", config: ToastConfiguration(direction: .top, dismissBy: [.time(time: 1.0), .swipe(direction: .natural)], animationTime: 0.25))
+        
+        let toast = rollHistory.isOldestThreeFirst ? ascendingToast : descendingToast
+        toast.show()
     }
     
 }
