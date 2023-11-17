@@ -199,14 +199,14 @@ class FourDiceVC: UIViewController, DiceVCProtocol {
         diceStackView2.distribution = .fillEqually
         diceStackView2.spacing = 50
         
-        diceStackView.addArrangedSubview(diceStackView1)
         diceStackView.addArrangedSubview(diceStackView2)
+        diceStackView.addArrangedSubview(diceStackView1)
         
-        diceStackView1.addArrangedSubview(diceImageView1)
         diceStackView1.addArrangedSubview(diceImageView2)
+        diceStackView1.addArrangedSubview(diceImageView1)
         
-        diceStackView2.addArrangedSubview(diceImageView3)
         diceStackView2.addArrangedSubview(diceImageView4)
+        diceStackView2.addArrangedSubview(diceImageView3)
         
         NSLayoutConstraint.activate([
             diceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
