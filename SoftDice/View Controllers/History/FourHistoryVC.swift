@@ -42,10 +42,10 @@ class FourHistoryVC: UITableViewController, HistoryVCProtocol {
         let rollValue = rollHistory.fourRollHistory[indexPath.row].rollValue
         cell.textLabel?.text = "Roll \(rollNumber)"
         cell.selectionStyle = .none
-        cell.diceImageViews[0].image = UIImage(named: "dice-\(rollValue.0)")
-        cell.diceImageViews[1].image = UIImage(named: "dice-\(rollValue.1)")
-        cell.diceImageViews[2].image = UIImage(named: "dice-\(rollValue.2)")
-        cell.diceImageViews[3].image = UIImage(named: "dice-\(rollValue.3)")
+        cell.diceImageView1.image = UIImage(named: "dice-\(rollValue.0)")
+        cell.diceImageView2.image = UIImage(named: "dice-\(rollValue.1)")
+        cell.diceImageView3.image = UIImage(named: "dice-\(rollValue.2)")
+        cell.diceImageView4.image = UIImage(named: "dice-\(rollValue.3)")
         
         return cell
     }
@@ -61,7 +61,7 @@ class FourHistoryVC: UITableViewController, HistoryVCProtocol {
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
         placeholderImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        placeholderLabel.text = "No rolls"
+        placeholderLabel.text = "No Rolls"
         placeholderLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         placeholderLabel.textColor = .placeholderText
         
