@@ -137,7 +137,7 @@ class FiveDiceVC: UIViewController, DiceVCProtocol {
         // Make sure the tap is coming from the UIImageView
         guard let _ = tapGestureRecognizer.view as? UIImageView else { return }
         if tapGestureRecognizer.state == .ended {
-            var results = [Int]()
+            var results: [Int] = []
             
             for _ in 0..<5 {
                 results.append(getDiceRoll())

@@ -8,8 +8,11 @@
 import UIKit
 
 class FourHistoryCell: UITableViewCell, HistoryCellProtocol {
-
-    let diceImageViews = (0..<4).map { _ in UIImageView() }
+    
+    let diceImageView1 = UIImageView()
+    let diceImageView2 = UIImageView()
+    let diceImageView3 = UIImageView()
+    let diceImageView4 = UIImageView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,25 +24,31 @@ class FourHistoryCell: UITableViewCell, HistoryCellProtocol {
     }
     
     func setupImageViews() {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(diceImageView1)
+        contentView.addSubview(diceImageView2)
+        contentView.addSubview(diceImageView3)
+        contentView.addSubview(diceImageView4)
         
-        contentView.addSubview(stackView)
+        diceImageView1.translatesAutoresizingMaskIntoConstraints = false
+        diceImageView2.translatesAutoresizingMaskIntoConstraints = false
+        diceImageView3.translatesAutoresizingMaskIntoConstraints = false
+        diceImageView4.translatesAutoresizingMaskIntoConstraints = false
         
-        for imageView in diceImageViews {
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.addArrangedSubview(imageView)
+        let imageViews = [diceImageView1, diceImageView2, diceImageView3, diceImageView4]
+        imageViews.forEach { imageView in
+            NSLayoutConstraint.activate([
+                imageView.widthAnchor.constraint(equalToConstant: 50),
+                imageView.heightAnchor.constraint(equalToConstant: 50),
+                imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            ])
         }
         
         NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
-        ] + diceImageViews.flatMap { [
-            $0.widthAnchor.constraint(equalToConstant: 50),
-            $0.heightAnchor.constraint(equalToConstant: 50)
-        ]})
+            diceImageView1.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            diceImageView2.trailingAnchor.constraint(equalTo: diceImageView1.leadingAnchor, constant: -10),
+            diceImageView3.trailingAnchor.constraint(equalTo: diceImageView2.leadingAnchor, constant: -10),
+            diceImageView4.trailingAnchor.constraint(equalTo: diceImageView3.leadingAnchor, constant: -10)
+        ])
     }
+    
 }

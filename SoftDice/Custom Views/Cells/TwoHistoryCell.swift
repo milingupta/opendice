@@ -22,26 +22,25 @@ class TwoHistoryCell: UITableViewCell, HistoryCellProtocol {
     }
     
     func setupImageViews() {
-        // add the image views to the cell's content view
         contentView.addSubview(diceImageView1)
         contentView.addSubview(diceImageView2)
         
-        // turn off autoresizing masks
         diceImageView1.translatesAutoresizingMaskIntoConstraints = false
         diceImageView2.translatesAutoresizingMaskIntoConstraints = false
         
-        // constrain the image views
+        let imageViews = [diceImageView1, diceImageView2]
+        imageViews.forEach { imageView in
+            NSLayoutConstraint.activate([
+                imageView.widthAnchor.constraint(equalToConstant: 50),
+                imageView.heightAnchor.constraint(equalToConstant: 50),
+                imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            ])
+        }
+        
         NSLayoutConstraint.activate([
-            diceImageView1.widthAnchor.constraint(equalToConstant: 50),
-            diceImageView1.heightAnchor.constraint(equalToConstant: 50),
-            diceImageView1.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            diceImageView1.trailingAnchor.constraint(equalTo: diceImageView2.trailingAnchor, constant: -60),
-            
-            diceImageView2.widthAnchor.constraint(equalToConstant: 50),
-            diceImageView2.heightAnchor.constraint(equalToConstant: 50),
-            diceImageView2.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            diceImageView2.leadingAnchor.constraint(equalTo: diceImageView1.trailingAnchor, constant: 10),
-            diceImageView2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+            diceImageView1.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            diceImageView2.trailingAnchor.constraint(equalTo: diceImageView1.leadingAnchor, constant: -10)
         ])
     }
+    
 }
