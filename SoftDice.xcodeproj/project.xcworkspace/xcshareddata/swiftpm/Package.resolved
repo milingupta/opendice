@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "drops",
+      "identity" : "toast-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/omaralbeik/Drops.git",
+      "location" : "https://github.com/BastiaanJansen/toast-swift",
       "state" : {
-        "revision" : "a183ee6f79f21c940092a19c2cba756555422371",
-        "version" : "1.7.0"
+        "revision" : "a24a15677179e66be1a8b45f4c6b21001fbb6ab2",
+        "version" : "2.0.0"
       }
     }
   ],
