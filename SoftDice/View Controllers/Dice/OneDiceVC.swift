@@ -106,4 +106,3 @@ class OneDiceVC: UIViewController, DiceVCProtocol {
     }
     
 }
-
