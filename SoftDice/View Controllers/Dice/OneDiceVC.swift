@@ -7,38 +7,43 @@
 
 import UIKit
 
-class OneDiceVC: UIViewController {
-    
+class OneDiceVC: UIViewController, DiceVCProtocol {
+        
     var rollHistory = RollHistory.shared
+    
     let diceImageView = UIImageView()
     
-    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    var imageSize: CGFloat = 120
+    
+    var impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        configureDiceImageView()
+        
+        view.addSubview(diceImageView)
+        
+        configureDiceImageViews()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(showHistory))
         
         impactFeedbackGenerator.prepare()
     }
 
-    func configureDiceImageView() {
-        view.addSubview(diceImageView)
+    func configureDiceImageViews() {
         diceImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        diceImageView.isUserInteractionEnabled = true
         diceImageView.image = UIImage(named: "dice-1")
-        
+        diceImageView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         diceImageView.addGestureRecognizer(tapGesture)
+        diceImageView.widthAnchor.constraint(equalToConstant: imageSize).isActive = true
+        diceImageView.heightAnchor.constraint(equalToConstant: imageSize).isActive = true
         
+        view.addSubview(diceImageView)
+
         NSLayoutConstraint.activate([
             diceImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            diceImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            diceImageView.widthAnchor.constraint(equalToConstant: 120),
-            diceImageView.heightAnchor.constraint(equalToConstant: 120)
+            diceImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -46,48 +51,53 @@ class OneDiceVC: UIViewController {
         return Int.random(in: 1...6)
     }
     
-    func setDiceImage() {
-        let result = getDiceRoll()
+    func setDiceImage(result: Int) -> UIImage {
         switch result {
         case 1:
-            diceImageView.image = UIImage(named: "dice-1")
+            return UIImage(named: "dice-1")!
         case 2:
-            diceImageView.image = UIImage(named: "dice-2")
+            return UIImage(named: "dice-2")!
         case 3:
-            diceImageView.image = UIImage(named: "dice-3")
+            return UIImage(named: "dice-3")!
         case 4:
-            diceImageView.image = UIImage(named: "dice-4")
+            return UIImage(named: "dice-4")!
         case 5:
-            diceImageView.image = UIImage(named: "dice-5")
+            return UIImage(named: "dice-5")!
         default:
-            diceImageView.image = UIImage(named: "dice-6")
-        }
-        
-        if rollHistory.isOldestOneFirst {
-            rollHistory.appendOneRoll(result)
-        } else {
-            rollHistory.prependOneRoll(result)
+            return UIImage(named: "dice-6")!
         }
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         // Make sure the tap is coming from the UIImageView
-        guard let tappedImageView = tapGestureRecognizer.view as? UIImageView else { return }
+        guard let _ = tapGestureRecognizer.view as? UIImageView else { return }
         if tapGestureRecognizer.state == .ended {
-            UIView.animate(withDuration: 0.2, animations: {
-                // Scale up
-                tappedImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            }) { _ in
-                UIView.animate(withDuration: 0.2, animations: {
-                    // Scale down
-                    tappedImageView.transform = CGAffineTransform.identity
-                }) { _ in
-                    // Change image after the animation
-                    self.setDiceImage()
-                }
+            let result = getDiceRoll()
+            
+            if rollHistory.isOldestOneFirst {
+                rollHistory.appendOneRoll(result)
+            } else {
+                rollHistory.prependOneRoll(result)
             }
+            
+            animateImageView(imageView: diceImageView, toImage: setDiceImage(result: result))
         }
         impactFeedbackGenerator.impactOccurred()
+    }
+    
+    func animateImageView(imageView: UIImageView, toImage: UIImage?) {
+        UIView.animate(withDuration: 0.2, animations: {
+            // Scale up
+            imageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }) { _ in
+            UIView.animate(withDuration: 0.2, animations: {
+                // Scale down
+                imageView.transform = CGAffineTransform.identity
+            }) { _ in
+                // Change image after the animation
+                imageView.image = toImage
+            }
+        }
     }
     
     @objc func showHistory() {

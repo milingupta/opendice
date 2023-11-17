@@ -7,8 +7,8 @@
 
 import UIKit
 
-class FourDiceVC: UIViewController {
-    
+class FourDiceVC: UIViewController, DiceVCProtocol {
+        
     var rollHistory = RollHistory.shared
     
     let diceStackView = UIStackView()
@@ -22,11 +22,24 @@ class FourDiceVC: UIViewController {
     
     var diceImageViews: [UIImageView] = []
     
-    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    var imageSize: CGFloat = 120
+    
+    var impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        view.addSubview(diceStackView)
+        diceStackView.addArrangedSubview(diceStackView1)
+        diceStackView.addArrangedSubview(diceStackView2)
+        
+        diceStackView1.addArrangedSubview(diceImageView1)
+        diceStackView1.addArrangedSubview(diceImageView2)
+        
+        diceStackView2.addArrangedSubview(diceImageView3)
+        diceStackView2.addArrangedSubview(diceImageView4)
+        
         configureDiceImageViews()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(showHistory))
@@ -60,8 +73,8 @@ class FourDiceVC: UIViewController {
             diceImageView.isUserInteractionEnabled = true
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
             diceImageView.addGestureRecognizer(tapGesture)
-            diceImageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
-            diceImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+            diceImageView.widthAnchor.constraint(equalToConstant: imageSize).isActive = true
+            diceImageView.heightAnchor.constraint(equalToConstant: imageSize).isActive = true
         }
         
         diceStackView.axis = .vertical
@@ -69,15 +82,13 @@ class FourDiceVC: UIViewController {
         diceStackView.spacing = 50
         diceStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(diceStackView)
-        
         diceStackView1.axis = .horizontal
-        diceStackView1.distribution = .equalSpacing
+        diceStackView1.distribution = .fillEqually
         diceStackView1.spacing = 50
         diceStackView1.translatesAutoresizingMaskIntoConstraints = false
         
         diceStackView2.axis = .horizontal
-        diceStackView2.distribution = .equalSpacing
+        diceStackView2.distribution = .fillEqually
         diceStackView2.spacing = 50
         diceStackView2.translatesAutoresizingMaskIntoConstraints = false
         
@@ -90,13 +101,15 @@ class FourDiceVC: UIViewController {
         diceStackView2.addArrangedSubview(diceImageView3)
         diceStackView2.addArrangedSubview(diceImageView4)
         
+        view.addSubview(diceStackView)
+
         NSLayoutConstraint.activate([
             diceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             diceStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
-    func rollDice() -> Int {
+    func getDiceRoll() -> Int {
         return Int.random(in: 1...6)
     }
     
@@ -121,10 +134,10 @@ class FourDiceVC: UIViewController {
         // Make sure the tap is coming from the UIImageView
         guard let _ = tapGestureRecognizer.view as? UIImageView else { return }
         if tapGestureRecognizer.state == .ended {
-            var results = [Int]()
+            var results: [Int] = []
             
             for _ in 0..<4 {
-                results.append(rollDice())
+                results.append(getDiceRoll())
             }
             
             if rollHistory.isOldestFourFirst {
@@ -160,12 +173,78 @@ class FourDiceVC: UIViewController {
         navigationController?.pushViewController(historyVC, animated: true)
     }
     
-    @objc func handleDeviceOrientation() {
+    @objc func handleDeviceOrientation() { // landscape
         if view.bounds.width > view.bounds.height {
-            diceStackView.axis = .horizontal
-        } else {
-            diceStackView.axis = .vertical
+            configureLandscapeOrientation()
+        } else { // portrait
+            configurePortraitOrientation()
         }
+    }
+    
+    func configureLandscapeOrientation() {
+        // Remove existing constraints to avoid conflicts
+        diceStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        // Configure for landscape orientation
+        diceStackView.axis = .horizontal
+        diceStackView.alignment = .center
+        diceStackView.distribution = .fillEqually
+        
+        // Setup subviews for landscape orientation
+        diceStackView1.axis = .horizontal
+        diceStackView1.distribution = .fillEqually
+        diceStackView1.spacing = 50
+        
+        diceStackView2.axis = .horizontal
+        diceStackView2.distribution = .fillEqually
+        diceStackView2.spacing = 50
+        
+        diceStackView.addArrangedSubview(diceStackView1)
+        diceStackView.addArrangedSubview(diceStackView2)
+        
+        diceStackView1.addArrangedSubview(diceImageView1)
+        diceStackView1.addArrangedSubview(diceImageView2)
+        
+        diceStackView2.addArrangedSubview(diceImageView3)
+        diceStackView2.addArrangedSubview(diceImageView4)
+        
+        NSLayoutConstraint.activate([
+            diceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            diceStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    func configurePortraitOrientation() {
+        // Remove existing constraints to avoid conflicts
+        diceStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        // Configure for portrait orientation
+        diceStackView.axis = .vertical
+        diceStackView.alignment = .center
+        diceStackView.distribution = .fillEqually
+        
+        // Setup subviews for portrait orientation
+        diceStackView1.axis = .horizontal
+        diceStackView1.distribution = .fillEqually
+        diceStackView1.spacing = 50
+        
+        diceStackView2.axis = .horizontal
+        diceStackView2.distribution = .fillEqually
+        diceStackView2.spacing = 50
+        
+        diceStackView.addArrangedSubview(diceStackView1)
+        diceStackView.addArrangedSubview(diceStackView2)
+        
+        diceStackView1.addArrangedSubview(diceImageView1)
+        diceStackView1.addArrangedSubview(diceImageView2)
+        
+        diceStackView2.addArrangedSubview(diceImageView3)
+        diceStackView2.addArrangedSubview(diceImageView4)
+        
+        NSLayoutConstraint.activate([
+            diceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            diceStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 
     deinit {
