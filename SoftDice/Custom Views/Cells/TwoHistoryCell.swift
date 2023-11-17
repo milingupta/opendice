@@ -22,12 +22,15 @@ class TwoHistoryCell: UITableViewCell, HistoryCellProtocol {
     }
     
     func setupImageViews() {
+        // add the image views to the cell's content view
         contentView.addSubview(diceImageView1)
         contentView.addSubview(diceImageView2)
         
+        // turn off autoresizing masks
         diceImageView1.translatesAutoresizingMaskIntoConstraints = false
         diceImageView2.translatesAutoresizingMaskIntoConstraints = false
         
+        // constrain the image views
         NSLayoutConstraint.activate([
             diceImageView1.widthAnchor.constraint(equalToConstant: 50),
             diceImageView1.heightAnchor.constraint(equalToConstant: 50),
@@ -41,5 +44,4 @@ class TwoHistoryCell: UITableViewCell, HistoryCellProtocol {
             diceImageView2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
     }
-    
 }

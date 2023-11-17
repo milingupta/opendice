@@ -59,7 +59,7 @@ class TwoHistoryVC: UITableViewController, HistoryVCProtocol {
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
         placeholderImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        placeholderLabel.text = "No Rolls"
+        placeholderLabel.text = "No rolls"
         placeholderLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         placeholderLabel.textColor = .placeholderText
         
@@ -89,7 +89,7 @@ class TwoHistoryVC: UITableViewController, HistoryVCProtocol {
         ])
     }
     
-    func updatePlaceholderVisibility() {
+     func updatePlaceholderVisibility() {
         let rollCount = rollHistory.twoRollHistory.count
 
         // Show placeholder view only when there are no rolls

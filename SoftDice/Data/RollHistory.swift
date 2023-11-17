@@ -10,7 +10,6 @@ import Foundation
 class RollHistory: NSObject {
     
     static let shared = RollHistory()
-    
     var isOldestOneFirst = true
     var isOldestTwoFirst = true
     var isOldestThreeFirst = true
@@ -24,6 +23,11 @@ class RollHistory: NSObject {
     private(set) var fiveRollHistory: [(rollNumber: Int, rollValue: (Int, Int, Int, Int, Int))] = []
 
     private override init() {}
+    
+    func clearHistory() {
+        oneRollHistory.removeAll()
+        twoRollHistory.removeAll()
+    }
         
     func appendOneRoll(_ roll: Int) {
         let rollNumber = oneRollHistory.count + 1

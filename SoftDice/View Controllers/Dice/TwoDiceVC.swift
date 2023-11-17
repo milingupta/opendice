@@ -147,10 +147,10 @@ class TwoDiceVC: UIViewController, DiceVCProtocol {
         navigationController?.pushViewController(historyVC, animated: true)
     }
     
-    @objc func handleDeviceOrientation() {
-        if view.bounds.width > view.bounds.height { // landscape
+    @objc func handleDeviceOrientation() { // landscape
+        if view.bounds.width > view.bounds.height {
             configureLandscapeOrientation()
-        } else { // portrait
+        } else { //portrait
             configurePortraitOrientation()
         }
     }
