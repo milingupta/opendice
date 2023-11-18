@@ -1,6 +1,6 @@
 //
 //  TwoDiceVC.swift
-//  SoftDice
+//  OpenDice
 //
 //  Created by Milin Gupta on 7/7/23.
 //

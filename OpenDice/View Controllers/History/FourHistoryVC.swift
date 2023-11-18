@@ -1,6 +1,6 @@
 //
 //  FourHistoryVC.swift
-//  SoftDice
+//  OpenDice
 //
 //  Created by Milin Gupta on 7/11/23.
 //

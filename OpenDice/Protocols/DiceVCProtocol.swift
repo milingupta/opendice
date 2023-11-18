@@ -1,6 +1,6 @@
 //
 //  DiceVCProtocol.swift
-//  SoftDice
+//  OpenDice
 //
 //  Created by Milin Gupta on 11/16/23.
 //
