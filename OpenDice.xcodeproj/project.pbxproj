@@ -34,7 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9790E16A2ADDD64800CECEAA /* SoftDice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoftDice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9790E16A2ADDD64800CECEAA /* OpenDice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenDice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9790E1762ADDD64900CECEAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9790E1792ADDD64900CECEAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9790E17B2ADDD64900CECEAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		9790E1612ADDD64800CECEAA = {
 			isa = PBXGroup;
 			children = (
-				9790E16C2ADDD64800CECEAA /* SoftDice */,
+				9790E16C2ADDD64800CECEAA /* OpenDice */,
 				9790E16B2ADDD64800CECEAA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,12 +84,12 @@
 		9790E16B2ADDD64800CECEAA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9790E16A2ADDD64800CECEAA /* SoftDice.app */,
+				9790E16A2ADDD64800CECEAA /* OpenDice.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9790E16C2ADDD64800CECEAA /* SoftDice */ = {
+		9790E16C2ADDD64800CECEAA /* OpenDice */ = {
 			isa = PBXGroup;
 			children = (
 				9790E1832ADDD75900CECEAA /* Support */,
@@ -101,7 +101,7 @@
 				9790E1782ADDD64900CECEAA /* LaunchScreen.storyboard */,
 				9790E17B2ADDD64900CECEAA /* Info.plist */,
 			);
-			path = SoftDice;
+			path = OpenDice;
 			sourceTree = "<group>";
 		};
 		9790E1812ADDD75900CECEAA /* Data */ = {
@@ -187,9 +187,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9790E1692ADDD64800CECEAA /* SoftDice */ = {
+		9790E1692ADDD64800CECEAA /* OpenDice */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9790E17E2ADDD64900CECEAA /* Build configuration list for PBXNativeTarget "SoftDice" */;
+			buildConfigurationList = 9790E17E2ADDD64900CECEAA /* Build configuration list for PBXNativeTarget "OpenDice" */;
 			buildPhases = (
 				9790E1662ADDD64800CECEAA /* Sources */,
 				9790E1672ADDD64800CECEAA /* Frameworks */,
@@ -199,12 +199,12 @@
 			);
 			dependencies = (
 			);
-			name = SoftDice;
+			name = OpenDice;
 			packageProductDependencies = (
 				970420C22B071643000154C6 /* Toast */,
 			);
 			productName = SoftDice;
-			productReference = 9790E16A2ADDD64800CECEAA /* SoftDice.app */;
+			productReference = 9790E16A2ADDD64800CECEAA /* OpenDice.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -222,7 +222,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9790E1652ADDD64800CECEAA /* Build configuration list for PBXProject "SoftDice" */;
+			buildConfigurationList = 9790E1652ADDD64800CECEAA /* Build configuration list for PBXProject "OpenDice" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -238,7 +238,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9790E1692ADDD64800CECEAA /* SoftDice */,
+				9790E1692ADDD64800CECEAA /* OpenDice */,
 			);
 		};
 /* End PBXProject section */
@@ -427,8 +427,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HLLUK26RZG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SoftDice/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SoftDice;
+				INFOPLIST_FILE = OpenDice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenDice;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.dice-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -439,7 +439,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.milingupta.SoftDice;
+				PRODUCT_BUNDLE_IDENTIFIER = io.milingupta.OpenDice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -457,8 +457,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HLLUK26RZG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SoftDice/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SoftDice;
+				INFOPLIST_FILE = OpenDice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenDice;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.dice-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -469,7 +469,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.milingupta.SoftDice;
+				PRODUCT_BUNDLE_IDENTIFIER = io.milingupta.OpenDice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -480,7 +480,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9790E1652ADDD64800CECEAA /* Build configuration list for PBXProject "SoftDice" */ = {
+		9790E1652ADDD64800CECEAA /* Build configuration list for PBXProject "OpenDice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9790E17C2ADDD64900CECEAA /* Debug */,
@@ -489,7 +489,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9790E17E2ADDD64900CECEAA /* Build configuration list for PBXNativeTarget "SoftDice" */ = {
+		9790E17E2ADDD64900CECEAA /* Build configuration list for PBXNativeTarget "OpenDice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9790E17F2ADDD64900CECEAA /* Debug */,
