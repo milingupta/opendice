@@ -19,9 +19,6 @@ DerivedData
 # Keystore
 *.jks
 
-# Environment-specific files
-Info.plist
-
 # User-specific Xcode workspace settings
 **/xcuserdata/
 
