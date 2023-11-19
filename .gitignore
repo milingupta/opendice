@@ -32,6 +32,7 @@ Info.plist
 # Exclude specific workspace configurations
 # Uncomment the line below if using a dependency manager like CocoaPods
 #project.xcworkspace/
+**/project.xcworkspace/xcuserdata/
 
 # Include shared Xcode scheme files
 # xcshareddata/xcschemes/* (uncomment this line if you decide to exclude)
