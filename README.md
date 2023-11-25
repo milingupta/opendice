@@ -18,3 +18,5 @@ Best of all, you never have to worry about losing your dice again!
 - No data collection!
 
 #### If you want to give feedback or have questions: [Contact Me](mailto:milinguptadev@gmail.com)
+
+###### Dice images can be found here: <a href="https://www.flaticon.com/free-icons/dice" title="dice icons">Dice icons created by IconsNova - Flaticon</a>
