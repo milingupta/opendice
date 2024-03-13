@@ -20,6 +20,10 @@ class OneHistoryVC: UITableViewController, HistoryVCProtocol {
         return UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down"), style: .plain, target: self, action: #selector(sortTapped))
     }()
     
+    lazy var clearButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(systemName: "clear"), style: .plain, target: self, action: #selector(clearTapped))
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "History"
@@ -29,7 +33,7 @@ class OneHistoryVC: UITableViewController, HistoryVCProtocol {
         configurePlaceholderView()
         updatePlaceholderVisibility()
         
-        navigationItem.rightBarButtonItem = sortButton
+        navigationItem.rightBarButtonItems = [sortButton, clearButton]
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,6 +55,17 @@ class OneHistoryVC: UITableViewController, HistoryVCProtocol {
         rollHistory.reverseOneRollHistory()
         showSortOrderToast()
         UIView.transition(with: tableView, duration: 0.35, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() })
+    }
+    
+    @objc func clearTapped() {
+        let alertController = UIAlertController(title: "Clear History", message: "Are you sure you want to clear the roll history for rolling 1 die?", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+            self.rollHistory.clearOneRollHistory()
+            UIView.transition(with: self.tableView, duration: 0.35, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() })
+            self.updatePlaceholderVisibility()
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func configurePlaceholderView() {
@@ -96,6 +111,9 @@ class OneHistoryVC: UITableViewController, HistoryVCProtocol {
 
         // Enable sort button only when there are two or more rolls
         sortButton.isEnabled = rollCount >= 2
+        
+        // Enable clear button only when there are one or more rolls
+        clearButton.isEnabled = rollCount > 0
 
         // Enable or disable scrolling based on the presence of rolls
         tableView.isScrollEnabled = rollCount > 0

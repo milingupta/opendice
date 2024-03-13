@@ -10,6 +10,7 @@ import UIKit
 @objc protocol HistoryVCProtocol {
     var rollHistory: RollHistory { get }
     @objc func sortTapped()
+    @objc func clearTapped()
     func configurePlaceholderView()
     func updatePlaceholderVisibility()
     func showSortOrderToast()

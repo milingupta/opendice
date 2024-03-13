@@ -40,6 +40,10 @@ class RollHistory: NSObject {
         isOldestOneFirst.toggle()
     }
     
+    func clearOneRollHistory() {
+        oneRollHistory.removeAll()
+    }
+    
     func appendTwoRolls(_ roll: (Int, Int)) {
         let rollNumber = twoRollHistory.count + 1
         twoRollHistory.append((rollNumber: rollNumber, rollValue: roll))
@@ -53,6 +57,10 @@ class RollHistory: NSObject {
     func reverseTwoRollHistory() {
         twoRollHistory.reverse()
         isOldestTwoFirst.toggle()
+    }
+    
+    func clearTwoRollHistory() {
+        twoRollHistory.removeAll()
     }
     
     func appendThreeRolls(_ roll: (Int, Int, Int)) {
@@ -70,6 +78,10 @@ class RollHistory: NSObject {
         isOldestThreeFirst.toggle()
     }
     
+    func clearThreeRollHistory() {
+        threeRollHistory.removeAll()
+    }
+    
     func appendFourRolls(_ roll: (Int, Int, Int, Int)) {
         let rollNumber = fourRollHistory.count + 1
         fourRollHistory.append((rollNumber: rollNumber, rollValue: roll))
@@ -85,6 +97,10 @@ class RollHistory: NSObject {
         isOldestFourFirst.toggle()
     }
     
+    func clearFourRollHistory() {
+        fourRollHistory.removeAll()
+    }
+    
     func appendFiveRolls(_ roll: (Int, Int, Int, Int, Int)) {
         let rollNumber = fiveRollHistory.count + 1
         fiveRollHistory.append((rollNumber: rollNumber, rollValue: roll))
@@ -98,6 +114,10 @@ class RollHistory: NSObject {
     func reverseFiveRollHistory() {
         fiveRollHistory.reverse()
         isOldestFiveFirst.toggle()
+    }
+    
+    func clearFiveRollHistory() {
+        fiveRollHistory.removeAll()
     }
     
 }
