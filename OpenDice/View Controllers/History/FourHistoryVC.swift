@@ -19,6 +19,10 @@ class FourHistoryVC: UITableViewController, HistoryVCProtocol {
     lazy var sortButton: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down"), style: .plain, target: self, action: #selector(sortTapped))
     }()
+    
+    lazy var clearButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(systemName: "clear"), style: .plain, target: self, action: #selector(clearTapped))
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +33,7 @@ class FourHistoryVC: UITableViewController, HistoryVCProtocol {
         configurePlaceholderView()
         updatePlaceholderVisibility()
         
-        navigationItem.rightBarButtonItem = sortButton
+        navigationItem.rightBarButtonItems = [sortButton, clearButton]
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,6 +58,17 @@ class FourHistoryVC: UITableViewController, HistoryVCProtocol {
         rollHistory.reverseFourRollHistory()
         showSortOrderToast()
         UIView.transition(with: tableView, duration: 0.35, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() })
+    }
+    
+    @objc func clearTapped() {
+        let alertController = UIAlertController(title: "Clear History", message: "Are you sure you want to clear the roll history for rolling 4 dice?", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+            self.rollHistory.clearFourRollHistory()
+            UIView.transition(with: self.tableView, duration: 0.35, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() })
+            self.updatePlaceholderVisibility()
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func configurePlaceholderView() {
@@ -100,6 +115,9 @@ class FourHistoryVC: UITableViewController, HistoryVCProtocol {
         // Enable sort button only when there are two or more rolls
         sortButton.isEnabled = rollCount >= 2
 
+        // Enable clear button only when there are one or more rolls
+        clearButton.isEnabled = rollCount > 0
+        
         // Enable or disable scrolling based on the presence of rolls
         tableView.isScrollEnabled = rollCount > 0
     }
