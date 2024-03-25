@@ -19,11 +19,13 @@ class FourDiceVC: UIViewController, DiceVCProtocol {
     let diceImageView2 = UIImageView()
     let diceImageView3 = UIImageView()
     let diceImageView4 = UIImageView()
-    
     var diceImageViews: [UIImageView] = []
     
-    var imageSize: CGFloat = 120
-    
+    var portraitWidthConstraints: [NSLayoutConstraint] = []
+    var portraitHeightConstraints: [NSLayoutConstraint] = []
+    var landscapeWidthConstraints: [NSLayoutConstraint] = []
+    var landscapeHeightConstraints: [NSLayoutConstraint] = []
+        
     var impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     
     override func viewDidLoad() {
@@ -73,8 +75,16 @@ class FourDiceVC: UIViewController, DiceVCProtocol {
             diceImageView.isUserInteractionEnabled = true
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
             diceImageView.addGestureRecognizer(tapGesture)
-            diceImageView.widthAnchor.constraint(equalToConstant: imageSize).isActive = true
-            diceImageView.heightAnchor.constraint(equalToConstant: imageSize).isActive = true
+            
+            let portraitWidthConstraint = diceImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/3)
+            let portraitHeightConstraint = diceImageView.heightAnchor.constraint(equalTo: diceImageView.widthAnchor)
+            let landscapeWidthConstraint = diceImageView.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
+            let landscapeHeightConstraint = diceImageView.heightAnchor.constraint(equalTo: diceImageView.widthAnchor)
+            
+            portraitWidthConstraints.append(portraitWidthConstraint)
+            portraitHeightConstraints.append(portraitHeightConstraint)
+            landscapeWidthConstraints.append(landscapeWidthConstraint)
+            landscapeHeightConstraints.append(landscapeHeightConstraint)
         }
         
         diceStackView.axis = .vertical
@@ -107,6 +117,8 @@ class FourDiceVC: UIViewController, DiceVCProtocol {
             diceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             diceStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        
+        handleDeviceOrientation()
     }
     
     func getDiceRoll() -> Int {
@@ -207,11 +219,9 @@ class FourDiceVC: UIViewController, DiceVCProtocol {
         
         diceStackView2.addArrangedSubview(diceImageView4)
         diceStackView2.addArrangedSubview(diceImageView3)
-        
-        NSLayoutConstraint.activate([
-            diceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            diceStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+
+        NSLayoutConstraint.deactivate(portraitWidthConstraints + portraitHeightConstraints)
+        NSLayoutConstraint.activate(landscapeWidthConstraints + landscapeHeightConstraints)
     }
     
     func configurePortraitOrientation() {
@@ -240,11 +250,9 @@ class FourDiceVC: UIViewController, DiceVCProtocol {
         
         diceStackView2.addArrangedSubview(diceImageView4)
         diceStackView2.addArrangedSubview(diceImageView3)
-        
-        NSLayoutConstraint.activate([
-            diceStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            diceStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+
+        NSLayoutConstraint.deactivate(landscapeWidthConstraints + landscapeHeightConstraints)
+        NSLayoutConstraint.activate(portraitWidthConstraints + portraitHeightConstraints)
     }
 
     deinit {
