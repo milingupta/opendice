@@ -13,7 +13,10 @@ class OneDiceVC: UIViewController, DiceVCProtocol {
     
     let diceImageView = UIImageView()
     
-    var imageSize: CGFloat = 120
+    var portraitWidthConstraint: NSLayoutConstraint?
+    var portraitHeightConstraint: NSLayoutConstraint?
+    var landscapeWidthConstraint: NSLayoutConstraint?
+    var landscapeHeightConstraint: NSLayoutConstraint?
     
     var impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
 
@@ -22,12 +25,26 @@ class OneDiceVC: UIViewController, DiceVCProtocol {
         view.backgroundColor = .systemBackground
         
         view.addSubview(diceImageView)
-        
         configureDiceImageViews()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(showHistory))
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDeviceOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
         impactFeedbackGenerator.prepare()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        handleDeviceOrientation()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        handleDeviceOrientation()
+    }
+    
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        handleDeviceOrientation()
     }
 
     func configureDiceImageViews() {
@@ -36,15 +53,21 @@ class OneDiceVC: UIViewController, DiceVCProtocol {
         diceImageView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         diceImageView.addGestureRecognizer(tapGesture)
-        diceImageView.widthAnchor.constraint(equalToConstant: imageSize).isActive = true
-        diceImageView.heightAnchor.constraint(equalToConstant: imageSize).isActive = true
         
         view.addSubview(diceImageView)
 
+        portraitWidthConstraint = diceImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/3)
+        portraitHeightConstraint = diceImageView.heightAnchor.constraint(equalTo: diceImageView.widthAnchor)
+        
+        landscapeWidthConstraint = diceImageView.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
+        landscapeHeightConstraint = diceImageView.heightAnchor.constraint(equalTo: diceImageView.widthAnchor)
+        
         NSLayoutConstraint.activate([
-            diceImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            diceImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            diceImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            diceImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        
+        handleDeviceOrientation()
     }
     
     func getDiceRoll() -> Int {
@@ -103,6 +126,38 @@ class OneDiceVC: UIViewController, DiceVCProtocol {
     @objc func showHistory() {
         let historyVC = OneHistoryVC()
         navigationController?.pushViewController(historyVC, animated: true)
+    }
+    
+    @objc func handleDeviceOrientation() {
+        if view.bounds.width > view.bounds.height { // landscape
+            configureLandscapeOrientation()
+        } else { // portrait
+            configurePortraitOrientation()
+        }
+    }
+    
+    func configureLandscapeOrientation() {
+        // Deactivate portrait constraints
+        portraitWidthConstraint?.isActive = false
+        portraitHeightConstraint?.isActive = false
+        
+        // Activate landscape constraints
+        landscapeWidthConstraint?.isActive = true
+        landscapeHeightConstraint?.isActive = true
+    }
+    
+    func configurePortraitOrientation() {
+        // Deactivate landscape constraints
+        landscapeWidthConstraint?.isActive = false
+        landscapeHeightConstraint?.isActive = false
+        
+        // Activate portrait constraints
+        portraitWidthConstraint?.isActive = true
+        portraitHeightConstraint?.isActive = true
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
 }
